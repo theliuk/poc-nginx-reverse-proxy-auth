@@ -1,0 +1,23 @@
+version: '2'
+services:
+  proxy:
+    container_name: reverseproxy
+    hostname: reverseproxy
+    build: ./reverseproxy
+    ports:
+      - 8080:80
+    depends_on:
+      - server
+      - tokenissuer
+  server:
+    container_name: server
+    hostname: server
+    build: ./server
+    ports:
+      - 3000
+  tokenissuer:
+    container_name: tokeissuer
+    hostname: tokeissuer
+    build: ./tokenissuer
+    ports:
+      - 3000
